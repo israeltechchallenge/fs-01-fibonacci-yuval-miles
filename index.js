@@ -2,12 +2,8 @@ const xElem = document.querySelector("#x");
 const button = document.querySelector("#button");
 const yElem = document.querySelector("#y");
 
-const getFibAtIndex = (x) => {
-  if (x < 0) return;
-  if (x < 2) return x;
-  else return getFibAtIndex(x - 1) + getFibAtIndex(x - 2);
-};
-
-button.addEventListener("click", () => {
-  yElem.innerText = getFibAtIndex(parseInt(xElem.value));
+button.addEventListener("click", async () => {
+  const rs = await fetch(`http://localhost:5050/fibonacci/${xElem.value}`);
+  const { result } = await rs.json();
+  yElem.innerText = result;
 });
