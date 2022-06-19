@@ -4,13 +4,8 @@ const yElem = document.querySelector("#y");
 
 const getFibAtIndex = (x) => {
   if (x < 0) return;
-  const fib = [0, 1];
-  if (!x) return 0;
-  for (let i = 2; i < x; i++) {
-    fib.push(fib[0] + fib[1]);
-    fib.shift();
-  }
-  return fib[1];
+  if (x < 2) return x;
+  else return getFibAtIndex(x - 1) + getFibAtIndex(x - 2);
 };
 
 button.addEventListener("click", () => {
