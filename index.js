@@ -1,4 +1,5 @@
 const xElem = document.querySelector("#x");
+const button = document.querySelector("#button");
 const yElem = document.querySelector("#y");
 
 const getFibAtIndex = (x) => {
@@ -12,5 +13,6 @@ const getFibAtIndex = (x) => {
   return fib[1];
 };
 
-xElem.innerHTML = `&nbsp${9}&nbsp`;
-yElem.innerHTML = `&nbsp${getFibAtIndex(9)}&nbsp`;
+button.addEventListener("click", () => {
+  yElem.innerText = getFibAtIndex(parseInt(xElem.value));
+});

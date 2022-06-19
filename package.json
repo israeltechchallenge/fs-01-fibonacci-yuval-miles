@@ -1,0 +1,23 @@
+{
+  "name": "fs-01-fibonacci-yuval-miles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/israeltechchallenge/fs-01-fibonacci-yuval-miles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/israeltechchallenge/fs-01-fibonacci-yuval-miles/issues"
+  },
+  "homepage": "https://github.com/israeltechchallenge/fs-01-fibonacci-yuval-miles#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}

@@ -6,11 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fibonacci</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
-<body>
-    <div id="main-container">The Fibonacci of <span id="x"></span> is <span id="y"></span></div>
+<body style="font-family: 'Open Sans', sans-serif;">
+    <div class="container-fluid w-75 py-5">
+        <div class="row my-4">
+            <div class="col fs-1">Fibonacci Calculator</div>
+        </div>
+        <div class="row d-flex align-items-center">
+            <div class="col-auto">
+                <span>The Fibonacci of</span>
+            </div>
+            <div class="col-2">
+                <input id="x" type="number" placeholder="#" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button id="button" type="button" class="btn btn-primary">is</button>
+            </div>
+            <div class="col-auto">
+                <span id="y"></span>
+            </div>
+        </div>
+    </div>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./index.js"></script>
 </body>
 
