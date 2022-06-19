@@ -5,6 +5,14 @@ const spinner = document.querySelector("#spinner");
 const lgError = document.querySelector("#ln-error");
 const rSpinner = document.querySelector("#r-spinner");
 const resultsElm = document.querySelector("#results");
+const checkbox = document.querySelector("#checkbox");
+
+const getFibAtIndex = (x) => {
+  if (x < 0) return;
+  if (x > 50) return;
+  if (x < 2) return x;
+  else return getFibAtIndex(x - 1) + getFibAtIndex(x - 2);
+};
 
 const getPrevFib = async () => {
   try {
@@ -54,13 +62,17 @@ const toggleLargeNumError = async () => {
 button.addEventListener("click", async () => {
   if (xElem.value > 50) return toggleLargeNumError();
   try {
-    toggleLoad({ res: true });
-    const rs = await fetch(`http://localhost:5050/fibonacci/${xElem.value}`);
-    if (!rs.ok) throw new Error(await rs.text());
-    const { result } = await rs.json();
-    toggleLoad({ res: true });
-    yElem.innerText = result;
-    getPrevFib();
+    if (checkbox.checked) {
+      toggleLoad({ res: true });
+      const rs = await fetch(`http://localhost:5050/fibonacci/${xElem.value}`);
+      if (!rs.ok) throw new Error(await rs.text());
+      const { result } = await rs.json();
+      toggleLoad({ res: true });
+      yElem.innerText = result;
+      getPrevFib();
+    } else {
+      yElem.innerText = getFibAtIndex(xElem.value);
+    }
   } catch (err) {
     yElem.innerHTML = `<span style="color:red;">Server Error: ${err.message}<span>`;
     toggleLoad({ res: true });
