@@ -6,12 +6,43 @@ const lgError = document.querySelector("#ln-error");
 const rSpinner = document.querySelector("#r-spinner");
 const resultsElm = document.querySelector("#results");
 const checkbox = document.querySelector("#checkbox");
+const sort = document.querySelector("#sort");
+
+let resArr = [];
 
 const getFibAtIndex = (x) => {
   if (x < 0) return;
-  if (x > 50) return;
   if (x < 2) return x;
   else return getFibAtIndex(x - 1) + getFibAtIndex(x - 2);
+};
+
+const updateResElm = (arr) => {
+  switch (sort.value) {
+    case "Sort By":
+      break;
+    case "1":
+      arr.sort((a, b) => a.number - b.number);
+      break;
+    case "2":
+      arr.sort((a, b) => b.number - a.number);
+      break;
+    case "3":
+      arr.sort((a, b) => a.createdDate - b.createdDate);
+      break;
+    case "4":
+      arr.sort((a, b) => b.createdDate - a.createdDate);
+      break;
+  }
+  const formattedArr = arr.map(
+    (el) =>
+      `<div class="border-bottom border-1 py-1 border-dark">The Fibonacci of <b>${
+        el.number
+      }</b> is <b>${el.result}</b>. Calculated at: ${new Date(
+        el.createdDate
+      )}</div>`
+  );
+  resultsElm.innerHTML = "";
+  for (el of formattedArr) resultsElm.innerHTML += el;
 };
 
 const getPrevFib = async () => {
@@ -20,16 +51,8 @@ const getPrevFib = async () => {
     const rs = await fetch(`http://localhost:5050/getFibonacciResults`);
     if (!rs.ok) throw new Error(await rs.text());
     const { results } = await rs.json();
-    const formattedArr = results.map(
-      (el) =>
-        `<div class="border-bottom border-1 py-1 border-dark">The Fibonacci of <b>${
-          el.number
-        }</b> is <b>${el.result}</b>. Calculated at: ${new Date(
-          el.createdDate
-        )}</div>`
-    );
-    resultsElm.innerHTML = "";
-    for (el of formattedArr) resultsElm.innerHTML += el;
+    resArr = results;
+    updateResElm(resArr);
     toggleLoad({ cal: true });
   } catch (err) {
     console.log(err);
@@ -77,6 +100,10 @@ button.addEventListener("click", async () => {
     yElem.innerHTML = `<span style="color:red;">Server Error: ${err.message}<span>`;
     toggleLoad({ res: true });
   }
+});
+
+sort.addEventListener("change", async () => {
+  updateResElm(resArr);
 });
 
 //Helper function for testing

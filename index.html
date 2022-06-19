@@ -41,15 +41,21 @@
                 Cant be larger then 50
             </div>
         </div>
-        <div class="d-flex flex-column gap-5">
+        <div class="d-flex flex-column gap-3">
             <div class="d-flex gap-3">
                 <div class="h2">Results</div>
                 <div id="r-spinner" class="spinner-border d-none" role="status">
                     <span class="sr-only"></span>
                 </div>
             </div>
+            <select id="sort" class="form-select bg-light" style="width: 200px;" aria-label="Default select example">
+                <option selected disabled>Sort By</option>
+                <option value="1">Number Asc</option>
+                <option value="2">Number Desc</option>
+                <option value="3">Date Asc</option>
+                <option value="4">Date Desc</option>
+            </select>
             <div id="results">
-
             </div>
         </div>
     </div>
