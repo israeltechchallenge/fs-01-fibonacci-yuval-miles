@@ -9,23 +9,32 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
-<body style="font-family: 'Open Sans', sans-serif;">
-    <div class="container-fluid w-75 py-5">
-        <div class="row my-4">
-            <div class="col fs-1">Fibonacci Calculator</div>
+<body style="font-family: 'Open Sans', sans-serif; height: 100vh;"
+    class="d-flex justify-content-center align-items-center">
+    <div class="w-75 h-75">
+        <div class="mb-4">
+            <div class="fs-1">Fibonacci Calculator</div>
         </div>
-        <div class="row d-flex align-items-center">
-            <div class="col-auto">
+        <div class="d-flex align-items-center gap-3 mb-1">
+            <div>
                 <span>The Fibonacci of</span>
             </div>
-            <div class="col-2">
-                <input id="x" type="number" placeholder="#" class="form-control">
+            <div>
+                <input id="x" type="number" placeholder="#" class="form-control" style="width: 86px;">
             </div>
-            <div class="col-auto">
+            <div>
                 <button id="button" type="button" class="btn btn-primary">is</button>
             </div>
-            <div class="col-auto">
+            <div>
                 <span id="y"></span>
+                <div id="spinner" class="spinner-border d-none" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end" style="width: 220.28px;">
+            <div id="ln-error" class="alert alert-danger p-1 d-none" role="alert">
+                Cant be larger then 50
             </div>
         </div>
     </div>
