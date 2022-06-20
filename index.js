@@ -3,7 +3,6 @@ const button = document.querySelector("#button");
 const yElem = document.querySelector("#y");
 
 const getFibAtIndex = (x) => {
-  if (x < 0) return;
   if (x < 2) return x;
   else return getFibAtIndex(x - 1) + getFibAtIndex(x - 2);
 };
