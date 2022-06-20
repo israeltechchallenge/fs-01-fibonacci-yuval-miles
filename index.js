@@ -10,10 +10,17 @@ const sort = document.querySelector("#sort");
 
 let resArr = [];
 
-const getFibAtIndex = (x) => {
-  if (x < 0) return;
+const getFibAtIndex = (x, hashmap) => {
+  hashmap = hashmap || {};
+  if (hashmap.hasOwnProperty(x)) return hashmap[x];
+  if (x > 50) {
+    toggleLargeNumError();
+    return;
+  }
   if (x < 2) return x;
-  else return getFibAtIndex(x - 1) + getFibAtIndex(x - 2);
+  else
+    return (hashmap[x] =
+      getFibAtIndex(x - 1, hashmap) + getFibAtIndex(x - 2, hashmap));
 };
 
 const updateResElm = (arr) => {
