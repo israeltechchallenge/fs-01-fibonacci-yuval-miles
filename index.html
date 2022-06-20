@@ -19,7 +19,8 @@
                 <span>The Fibonacci of</span>
             </div>
             <div class="col-2">
-                <input id="x" type="number" placeholder="#" class="form-control">
+                <input id="x" type="number" placeholder="#" class="form-control" min="0"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
             <div class="col-auto">
                 <button id="button" type="button" class="btn btn-primary">is</button>
