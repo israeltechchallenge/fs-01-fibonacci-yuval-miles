@@ -8,8 +8,10 @@ const resultsElm = document.querySelector("#results");
 const checkbox = document.querySelector("#checkbox");
 
 const getFibAtIndex = (x) => {
-  if (x < 0) return;
-  if (x > 50) return;
+  if (x > 50) {
+    toggleLargeNumError();
+    return;
+  }
   if (x < 2) return x;
   else return getFibAtIndex(x - 1) + getFibAtIndex(x - 2);
 };
