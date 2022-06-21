@@ -1,3 +1,5 @@
+const { client } = require("../db/connect");
+
 const fib = (x, hashmap) => {
   hashmap = hashmap || {};
   if (hashmap.hasOwnProperty(x)) return hashmap[x];
@@ -8,17 +10,21 @@ const fib = (x, hashmap) => {
   else return (hashmap[x] = fib(x - 1, hashmap) + fib(x - 2, hashmap));
 };
 
-const prevArr = [];
-
 const getFibAtIndex = (req, res) => {
   const num = fib(req.params.number);
-  prevArr.push(num);
-  console.log(prevArr);
-  res.send(200, `${num}`);
+  client
+    .db("fib")
+    .collection("prevFibNumbers")
+    .insertOne({ num: req.params.number, result: num });
+  res.status(200).send(`${num}`);
 };
 
-const getPrevRes = (req, res) => {
-  res.send(prevArr.join(","));
+const getPrevRes = async (req, res) => {
+  const cursor = client.db("fib").collection("prevFibNumbers").find({});
+  const results = [];
+  await cursor.forEach(({ num, result }) => results.push({ num, result }));
+  const resObj = { message: "success", results };
+  res.status(200).json(resObj);
 };
 
 module.exports = { getFibAtIndex, getPrevRes };
