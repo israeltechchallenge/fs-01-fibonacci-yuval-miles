@@ -11,18 +11,25 @@ const fib = (x, hashmap) => {
 };
 
 const getFibAtIndex = (req, res) => {
+  const date = new Date();
   const num = fib(req.params.number);
   client
     .db("fib")
     .collection("prevFibNumbers")
-    .insertOne({ num: req.params.number, result: num });
-  res.status(200).send(`${num}`);
+    .insertOne({
+      number: parseInt(req.params.number),
+      result: num,
+      createdDate: date.getTime(),
+    });
+  res.status(200).json({ result: num });
 };
 
 const getPrevRes = async (req, res) => {
   const cursor = client.db("fib").collection("prevFibNumbers").find({});
   const results = [];
-  await cursor.forEach(({ num, result }) => results.push({ num, result }));
+  await cursor.forEach(({ number, result, createdDate }) =>
+    results.push({ number, result, createdDate })
+  );
   const resObj = { message: "success", results };
   res.status(200).json(resObj);
 };
