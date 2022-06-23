@@ -84,8 +84,12 @@ const toggleLoad = ({ cal, res }) => {
 
 const toggleLargeNumError = async () => {
   lgError.classList.toggle("d-none");
+  xElem.classList.toggle("border-danger");
+  xElem.classList.toggle("text-danger");
   setTimeout(() => {
     lgError.classList.toggle("d-none");
+    xElem.classList.toggle("border-danger");
+    xElem.classList.toggle("text-danger");
   }, 3000);
 };
 
