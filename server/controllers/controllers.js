@@ -1,4 +1,7 @@
-const { client } = require("../db/connect");
+let client;
+const injectConnection = (connection) => {
+  client = connection;
+};
 
 const fib = (x, hashmap) => {
   hashmap = hashmap || {};
@@ -34,4 +37,4 @@ const getPrevRes = async (req, res) => {
   res.status(200).json(resObj);
 };
 
-module.exports = { getFibAtIndex, getPrevRes };
+module.exports = { getFibAtIndex, getPrevRes, injectConnection };

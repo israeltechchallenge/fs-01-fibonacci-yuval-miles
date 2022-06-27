@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { getFibAtIndex, getPrevRes } = require("../controllers/controllers");
 
-router.route("/fibonacci/:number").get(getFibAtIndex);
-router.route("/getFibonacciResults").get(getPrevRes);
+router.get("/fibonacci/:number", getFibAtIndex);
+router.get("/getFibonacciResults", getPrevRes);
 
 module.exports = router;
