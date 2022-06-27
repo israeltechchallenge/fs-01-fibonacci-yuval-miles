@@ -10,8 +10,7 @@ const sort = document.querySelector("#sort");
 
 let resArr = [];
 
-const getFibAtIndex = (x, hashmap) => {
-  hashmap = hashmap || {};
+const getFibAtIndex = (x, hashmap = {}) => {
   if (hashmap.hasOwnProperty(x)) return hashmap[x];
   if (x > 50) {
     toggleLargeNumError();
@@ -83,17 +82,20 @@ const toggleLoad = ({ cal, res }) => {
 };
 
 const toggleLargeNumError = async () => {
+  lgError.innerHTML = "Cant be larger then 50";
   lgError.classList.toggle("d-none");
   xElem.classList.toggle("border-danger");
   xElem.classList.toggle("text-danger");
-  setTimeout(() => {
-    lgError.classList.toggle("d-none");
-    xElem.classList.toggle("border-danger");
-    xElem.classList.toggle("text-danger");
-  }, 3000);
 };
 
 button.addEventListener("click", async () => {
+  yElem.innerHTML = "";
+  if (!yElem.classList.contains("text-decoration-underline")) {
+    yElem.classList.toggle("text-decoration-underline");
+    yElem.classList.toggle("fw-bold");
+    yElem.classList.toggle("fs-5");
+  }
+  if (!lgError.classList.contains("d-none")) toggleLargeNumError();
   if (xElem.value > 50) return toggleLargeNumError();
   try {
     if (checkbox.checked) {
@@ -108,6 +110,9 @@ button.addEventListener("click", async () => {
       yElem.innerText = getFibAtIndex(xElem.value);
     }
   } catch (err) {
+    yElem.classList.toggle("text-decoration-underline");
+    yElem.classList.toggle("fw-bold");
+    yElem.classList.toggle("fs-5");
     yElem.innerHTML = `<span style="color:red;">Server Error: ${err.message}<span>`;
     toggleLoad({ res: true });
   }
