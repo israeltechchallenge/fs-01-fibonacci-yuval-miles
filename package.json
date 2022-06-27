@@ -19,6 +19,7 @@
   "homepage": "https://github.com/israeltechchallenge/fs-01-fibonacci-yuval-miles#readme",
   "dependencies": {
     "bootstrap": "^5.1.3",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "mongodb": "^4.7.0"
   },
